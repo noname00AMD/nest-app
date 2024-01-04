@@ -24,16 +24,9 @@ export default function NavigationBar(props) {
             ]
         },
         {
-            href: "/" + props.admin_path + "/product",
+            href: "/" + props.admin_path + "/question",
             className: "",
-            textLink: "Product",
-            child: [
-                {
-                    href: "/" + props.admin_path + "/product/add",
-                    className: "",
-                    textLink: "New Product",
-                }
-            ]
+            textLink: "Question",
         },
         {
             href: "/" + props.admin_path + "/category",

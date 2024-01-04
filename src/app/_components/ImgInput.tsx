@@ -11,53 +11,52 @@ export default function ImgInput(props) {
         e.preventDefault();
     }
     var drop = (e) => {
-        // e.stopPropagation();
-        e.preventDefault();
-        imgRef.current.files = e.dataTransfer.files
-        changeImg()
+        // e.preventDefault();
+        // imgRef.current.files = e.dataTransfer.files
+        // changeImg()
     }
 
     var changeImg = (e) => {
 
-        var stop = false
-        var Imgs = imgRef.current.files
-        if (Imgs.length === 0) {
-            props.change(null)
-            stop = true
-        }
-        if (props.type === "thumb" && Imgs[0].size > 1024 * 300) {
-            alert("thumb img < 300kb")
-            stop = true
-            Imgs = Array.of(Imgs[0])
-        }
-        if (props.type === "media") {
-            for (var i = 0; i < Imgs.length; i++) {
-                var element = Imgs[i]
-                if (element.size > 1024 * 1024) {
-                    stop = true
-                    alert("media < 1Mb")
-                }
-            }
-        }
-        while (reviewRef.current.firstChild) {
-            reviewRef.current.removeChild(reviewRef.current.firstChild);
-        }
-        if (stop === true) {
-            return
-        }
-        props.change(Array.from(Imgs))
-        for (var i = 0; i < Imgs.length; i++) {
-            var Img = Imgs[i]
-            const para = document.createElement('p');
-            para.textContent = `File: ${Img.name} || Filesize: ${(Img.size / (1024)).toFixed(1)}kb.`;
-            const image = document.createElement('img');
-            image.src = URL.createObjectURL(Img);
-            image.height = 122
-            image.style.display = "block"
-            image.style.margin = "0 auto"
-            reviewRef.current.appendChild(image);
-            reviewRef.current.appendChild(para);
-        }
+        // var stop = false
+        // var Imgs = imgRef.current.files
+        // if (Imgs.length === 0) {
+        //     props.change(null)
+        //     stop = true
+        // }
+        // if (props.type === "thumb" && Imgs[0].size > 1024 * 300) {
+        //     alert("thumb img < 300kb")
+        //     stop = true
+        //     Imgs = Array.of(Imgs[0])
+        // }
+        // if (props.type === "media") {
+        //     for (var i = 0; i < Imgs.length; i++) {
+        //         var element = Imgs[i]
+        //         if (element.size > 1024 * 1024) {
+        //             stop = true
+        //             alert("media < 1Mb")
+        //         }
+        //     }
+        // }
+        // while (reviewRef.current.firstChild) {
+        //     reviewRef.current.removeChild(reviewRef.current.firstChild);
+        // }
+        // if (stop === true) {
+        //     return
+        // }
+        // props.change(Array.from(Imgs))
+        // for (var i = 0; i < Imgs.length; i++) {
+        //     var Img = Imgs[i]
+        //     const para = document.createElement('p');
+        //     para.textContent = `File: ${Img.name} || Filesize: ${(Img.size / (1024)).toFixed(1)}kb.`;
+        //     const image = document.createElement('img');
+        //     image.src = URL.createObjectURL(Img);
+        //     image.height = 122
+        //     image.style.display = "block"
+        //     image.style.margin = "0 auto"
+        //     reviewRef.current.appendChild(image);
+        //     reviewRef.current.appendChild(para);
+        // }
 
 
     }

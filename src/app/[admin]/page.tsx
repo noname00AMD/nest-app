@@ -19,7 +19,6 @@ export default function Page(props) {
 export async function getData({ req, res }) {
 
     var admin_path = process.env.ADMIN_PATH
-    console.log(req.params);
     var siteInfo = await siteInfoM.getAll()
     var categories = await categoryM.getAll()
     try {

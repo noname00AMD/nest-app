@@ -96,7 +96,6 @@ export default function Header(props) {
                         </Link>
                     </li>
                     {props.categories.map((category, index) => {
-                        console.log(category);
                         if (category.type === "category" && category.visible === true && index <= 5) {
                             return (
                                 <li key={category.id} className={"category"}>

@@ -14,6 +14,7 @@ export default function NewArticle(props) {
     var thumbTypeRef = useRef()
     var langRef = useRef()
     var [title, setTitle] = useState("")
+    var [postType, setPostType] = useState("")
     var [slug, setSlug] = useState("")
     var [description, setDescription] = useState("")
     var [excerpt, setExcerpt] = useState("")
@@ -25,71 +26,70 @@ export default function NewArticle(props) {
     var [thumbImg, setThumbImg] = useState()
 
     var submit = (e) => {
-        e.preventDefault()
-        var time = timeRef.current.value || null
-        var date = dateRef.current.value || null
-        var tts = null
-        if (useTts) {
-            tts = ttsRef.current.value
-        }
-        var thumbType = thumbTypeRef.current.value || null
-        var lang = langRef.current.value || null
-        var category = categoryRef.current.value || null
-        if (thumbImg.size > 1024 * 300) {
-            alert("thumb img < 300kb")
-            return
-        }
-        var reader = new FileReader();
-        reader.readAsDataURL(thumbImg);
-        reader.onloadend = function () {
-            console.log("fetch");
-            fetch(props.host + "/api/addarticle", {
-                method: "post",
-                cache: "no-cache",
-                credentials: "same-origin",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                referrerPolicy: "no-referrer",
-                body: JSON.stringify({
-                    title,
-                    description,
-                    excerpt,
-                    status,
-                    thumbType,
-                    category,
-                    lang,
-                    tags,
-                    status,
-                    time,
-                    date,
-                    tts,
-                    "thumbImg": reader.result
-                })
-            })
-        }
+        // e.preventDefault()
+        // var time = timeRef.current.value || null
+        // var date = dateRef.current.value || null
+        // var tts = null
+        // if (useTts) {
+        //     tts = ttsRef.current.value
+        // }
+        // var thumbType = thumbTypeRef.current.value || null
+        // var lang = langRef.current.value || null
+        // var category = categoryRef.current.value || null
+        // if (thumbImg.size > 1024 * 300) {
+        //     alert("thumb img < 300kb")
+        //     return
+        // }
+        // var reader = new FileReader();
+        // reader.readAsDataURL(thumbImg);
+        // reader.onloadend = function () {
+        //     console.log("fetch");
+        //     fetch(props.host + "/api/addarticle", {
+        //         method: "post",
+        //         cache: "no-cache",
+        //         credentials: "same-origin",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         referrerPolicy: "no-referrer",
+        //         body: JSON.stringify({
+        //             title,
+        //             description,
+        //             excerpt,
+        //             status,
+        //             thumbType,
+        //             category,
+        //             lang,
+        //             tags,
+        //             status,
+        //             time,
+        //             date,
+        //             tts,
+        //             "thumbImg": reader.result
+        //         })
+        //     })
+        // }
     }
 
 
 
     var changeStatus = (e) => {
-        if (e.target.value === "public") {
-            timeRef.current.setAttribute("disabled", true)
-            dateRef.current.setAttribute("disabled", true)
-        }
-        if (e.target.value === "hidden") {
-            timeRef.current.setAttribute("disabled", true)
-            dateRef.current.setAttribute("disabled", true)
-        }
-        if (e.target.value === "schedule") {
-            timeRef.current.removeAttribute("disabled")
-            dateRef.current.removeAttribute("disabled")
-            dateRef.current.value = today
-            timeRef.current.value = displayTime
+        // if (e.target.value === "public") {
+        //     timeRef.current.setAttribute("disabled", true)
+        //     dateRef.current.setAttribute("disabled", true)
+        // }
+        // if (e.target.value === "hidden") {
+        //     timeRef.current.setAttribute("disabled", true)
+        //     dateRef.current.setAttribute("disabled", true)
+        // }
+        // if (e.target.value === "schedule") {
+        //     timeRef.current.removeAttribute("disabled")
+        //     dateRef.current.removeAttribute("disabled")
+        //     dateRef.current.value = today
+        //     timeRef.current.value = displayTime
 
-        }
-        // timeRef.current.setAttribute()
-        setStatus(e.target.value)
+        // }
+        // setStatus(e.target.value)
     }
     var handleTitle = (e) => {
         setTitle(e.target.value)
@@ -147,10 +147,10 @@ export default function NewArticle(props) {
         hour = date.getHours(),
         min = date.getMinutes();
 
-    month = (month < 10 ? "0" : "") + month;
-    day = (day < 10 ? "0" : "") + day;
-    hour = (hour < 10 ? "0" : "") + hour;
-    min = (min < 10 ? "0" : "") + min;
+    // month = (month < 10 ? "0" : "") + month;
+    // day = (day < 10 ? "0" : "") + day;
+    // hour = (hour < 10 ? "0" : "") + hour;
+    // min = (min < 10 ? "0" : "") + min;
 
     var today = year + "-" + month + "-" + day,
         displayTime = hour + ":" + min;
@@ -161,11 +161,11 @@ export default function NewArticle(props) {
             <div className={"col-9 start-4 " + style.newarticle}>
                 <form action="submit" onSubmit={submit}>
                     <label aria-required="true" htmlFor="title">Title: </label>
-                    <input required className={style.title} onChange={handleTitle} maxLength="120" value={title} minLength="16"
+                    <input required className={style.title} onChange={handleTitle} maxLength={120} value={title} minLength={16}
                         type="text" />
                     <label aria-required="true" htmlFor="slug">Slug: </label>
                     <div className={style.slug} >
-                        <input required className={style.slug1} onChange={handleSlug} value={slug} maxLength="120" minLength="16"
+                        <input required className={style.slug1} onChange={handleSlug} value={slug} maxLength={120} minLength={16}
 
                             type="text" />
                         <svg className={style.slugGenerate} style={{ position: "absolute", cursor: "pointer", right: "8px", top: "8px" }} width="1.4em"
@@ -176,9 +176,9 @@ export default function NewArticle(props) {
                         </svg>
                     </div>
                     <label aria-required="true" htmlFor="description">Description: </label>
-                    <textarea required className={style.description} value={description} onChange={handleDescription} maxLength="500" minLength="16"  ></textarea>
+                    <textarea required className={style.description} value={description} onChange={handleDescription} maxLength={500} minLength={16}  ></textarea>
                     <label aria-required="true" htmlFor="excerpt ">Excerpt (Brief): </label>
-                    <textarea required className={style.excerpt} value={excerpt} onChange={handleExcerpt} maxLength="500" minLength="16"
+                    <textarea required className={style.excerpt} value={excerpt} onChange={handleExcerpt} maxLength={500} minLength={16}
                     ></textarea>
 
                     <div>
@@ -222,7 +222,7 @@ export default function NewArticle(props) {
                             })
                         }
                     </select>
-                    <label htmlFor="category" style={{ margin: "5px", display: "block" }} name="category">Category: </label>
+                    <label htmlFor="category" style={{ margin: "5px", display: "block" }} >Category: </label>
                     <select ref={categoryRef} className={style.category} aria-placeholder="select category" required >
                         {props.categories.map((category, index) => {
                             if (category.type == "category") {
@@ -256,6 +256,11 @@ export default function NewArticle(props) {
                         })
                         }
 
+                    </select>
+                    <label htmlFor="post_type">Post type : </label>
+                    <select name="postType" id="post_type">
+                        <option value="article">Article</option>
+                        <option value="product"> Product</option>
                     </select>
                     <label style={{ display: "block", margin: "5px" }} htmlFor="tags">Add tag: </label>
 

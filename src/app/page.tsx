@@ -5,6 +5,7 @@ import categoryM from "@/../model/category"
 import siteInfoM from '@/../model/siteInfo';
 export default async function Page(props) {
     const data = await getData()
+
     return (<>
         <HomeBody {...data} />
     </>)
@@ -13,7 +14,7 @@ export default async function Page(props) {
 export const metadata = {
     icons: {
         icon: {
-            url: "/favicon2.ico",
+            url: "/favicon.ico",
             type: "image/x-icon",
         },
         shortcut: { url: "/favicon2.ico", type: "image/x-icon" },
@@ -36,9 +37,5 @@ export async function getData() {
         categories,
         trendingTags,
     }
-
-
-
-
 
 }

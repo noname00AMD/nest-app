@@ -3,7 +3,6 @@ import NavigationBar from "@/app/_components/NavigationBar"
 
 export default async function Layout(props) {
   var admin_path = process.env["ADMIN_PATH"]
-  console.log(props.params);
 
   if (props.params.admin !== admin_path) {
     return "err"

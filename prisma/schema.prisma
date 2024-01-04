@@ -31,12 +31,12 @@ model comment {
   comment_date       DateTime    @default(now()) @db.DateTime()
   comment_date_gmt   DateTime    @default(now()) @db.DateTime()
   comment_content    String      @db.Text()
-  comment_type       CommentType @default(COMMENT) // or reply or review
+  comment_type       CommentType @default(COMMENT) // or reply or review or question
   comment_parent     BigInt?     @db.UnsignedBigInt()
-  userId             BigInt?     @db.UnsignedBigInt()
 
   @@index([id, comment_post_id])
 }
+
 
 model comment_meta {
   meta_id    BigInt @id @default(autoincrement()) @db.UnsignedBigInt()

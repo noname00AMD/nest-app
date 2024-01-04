@@ -7,7 +7,8 @@ import AdPanelSideBar from "./AdPanelSideBar";
 import AdPanel728x90 from "./AdPanel728x90";
 import TopAds from "./topAds";
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import Script from 'next/script';
 import 'swiper/css/bundle';
 export default function Body(props) {
     return (
